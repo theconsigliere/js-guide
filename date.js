@@ -4,7 +4,7 @@
 
  // display month
 
- displayMonth: function() {
+ displayMonth: function () {
     var now, year, month, months;
 
     now = new Date();

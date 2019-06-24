@@ -1,5 +1,5 @@
 // Loops
-/*
+
 //i standard in js for counter variable
 for (var i = 0; i < 10; i++) {
   console.log(i);
@@ -34,8 +34,6 @@ while (i < max.length) {
   console.log(max[i]);
   i++;
 }
-
-*/
 
 //continue and break statments
 
