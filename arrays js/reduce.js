@@ -23,3 +23,38 @@ const totalYears = inventors.reduce((total, inventor) => {
 console.log(totalYears);
 
 //861
+
+// * 8. Reduce Exercise
+// Sum up the instances of each of these
+const data = [
+  "car",
+  "car",
+  "truck",
+  "truck",
+  "bike",
+  "walk",
+  "car",
+  "van",
+  "bike",
+  "walk",
+  "car",
+  "van",
+  "car",
+  "truck"
+];
+
+const transportation = data.reduce((object, item) => {
+  // first run set object[item] = 0
+  if (!object[item]) {
+    object[item] = 0;
+  }
+  object[item]++;
+  return object;
+  //adds items once looped over into empty object below
+}, {});
+
+console.log(transportation);
+
+// RETURNS
+
+//{car: 5, truck: 3, bike: 2, walk: 2, van: 2}

@@ -64,3 +64,14 @@ console.log(oldest);
 9: {first: "Johannes", last: "Kepler", year: 1571, passed: 1630}
 10: {first: "Sarah E.", last: "Goode", year: 1855, passed: 1905}
 11: {first: "Ada", last: "Lovelace", year: 1815, passed: 1852} */
+
+// * 7. sort Exercise
+// Sort the people alphabetically by last name
+const alphabetically = people.sort((lastOne, nextOne) => {
+  const [last, first] = lastOne.split(", ");
+  const [blast, bfirst] = lastOne.split(", ");
+  return last > blast ? 1 : -1;
+});
+console.log(alphabetically);
+
+//(41) ["Blake, William", "Blair, Tony", "Blair, Robert", "Black, Elk", "Birrell, Augustine", "Biondo, Frank", "Billings, Josh", "Biko, Steve", "Bierce, Ambrose", "Biden, Joseph", "Bevel, Ken", "Bevan, Aneurin", "Bethea, Erin", "Berry, Wendell", "Berry, Halle", "Berra, Yogi", "Bernhard, Sandra", "Berne, Eric", "Berlin, Irving", "Berle, Milton", "Berio, Luciano", "Bergman, Ingmar", "Berger, Ric", "Bentsen, Lloyd", "Bent, Silas", "Benson, Leana", "Bennington, Chester", "Benn, Tony", "Benjamin, Walter", "Ben-Gurion, David", "Benenson, Peter", "Benchley, Robert", "Bellow, Saul", "Belloc, Hilaire", "Begin, Menachem", "Beethoven, Ludwig", "Beecher, Henry", "Beddoes, Mick", "Beckett, Samuel", "Becker, Carl", "Beck, Glenn"]
