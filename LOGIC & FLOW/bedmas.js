@@ -1,0 +1,11 @@
+// BEDMAS
+// Order of priority in JavaScript
+
+
+// BRACKETS
+// EXPONENTS
+// DIVISION
+// MULTIPLICATION
+// ADDITION
+// SUBTRACTION
+

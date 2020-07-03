@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Etch A Sketch</title>
+		<link rel="stylesheet" href="../../base.css">
+	</head>
+
+	<body>
+		<div class="canvasWrap">
+			<canvas width="1600" height="1000" id="etch-a-sketch"></canvas>
+			<div class="buttons">
+				<button class="shake">Shake!</button>
+			</div>
+
+		</div>
+		<script>
+			// select the elements on the page
+
+const canvas = document.querySelector('#etch-a-sketch');
+
+const context = canvas.getContext('2d');
+
+const shakeButton = document.querySelector('.shake');
+
+// true constant
+const MOVE_AMOUNT = 10;
+
+// set up canvas for drawing
+
+// get a random starting place for the etch-a-sketch
+
+// DESTRUCTURING
+const {width, height} = canvas;
+// 1600, 800
+
+let x = Math.floor(Math.random() * width);
+let y = Math.floor(Math.random() * height);
+
+// create random x & y starting points on the canvas
+
+context.lineJoin = 'round';
+context.lineCap = 'round';
+context.lineWidth = MOVE_AMOUNT;
+
+// set hue so we can create multicolor effect in draw function
+let hue = 0;
+context.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+
+// start drawing
+context.beginPath();
+
+// hook starting spot to our randomised x and y values
+context.moveTo(x, y);
+context.lineTo(x, y);
+context.stroke();
+
+// write a draw function
+function draw({key}) { // start the path
+context.beginPath();
+context.moveTo(x, y);
+
+// increment the hue
+hue += 1;
+context.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+
+// move our x and y values depending on what the user did
+switch (key) {
+case 'ArrowUp': y -= MOVE_AMOUNT;
+break;
+
+case 'ArrowRight': x += MOVE_AMOUNT;
+break;
+
+case 'ArrowDown': y += MOVE_AMOUNT;
+break;
+
+case 'ArrowLeft': x -= MOVE_AMOUNT;
+break;
+
+default:
+break;
+}
+
+context.lineTo(x, y);
+context.stroke();
+}
+
+// write a handler for the keys
+function handlekeys(event) {
+if (event.key.includes('Arrow')) { // stop arrow down moving the page down
+event.preventDefault();
+
+// grab key pressed and add it as an argument of the draw function
+draw({key: event.key});
+}
+}
+
+// clear / shake function
+function clearCanvas() { // clear canvas
+context.clearRect(0, 0, width, height);
+
+// run css animation
+canvas.classList.add('shake');
+// listen for animation to end so we can remove class
+canvas.addEventListener('animationend', function () {
+canvas.classList.remove('shake');
+// event listener will be automatically removed after its run, otherwise everytime function is run it will add another event listener to the canvas
+// using once
+}, {once: true});
+}
+
+// listen for arrow keys
+window.addEventListener('keydown', handlekeys);
+
+shakeButton.addEventListener('click', clearCanvas);
+
+		</script>
+
+		<style>
+			body {
+				min-height: 100vh;
+				display: grid;
+				align-items: center;
+				justify-items: center;
+				background: white;
+				background: url('https://s3.amazonaws.com/media.locally.net/original/HABA_ALT_2017-08-02-13-22-45.jpg');
+				background-size: cover;
+			}
+
+			canvas {
+				border: 30px solid #e80000;
+				border-radius: 10px;
+				/* Set the width and height to half the actual size so it doesn't look pixelated */
+				width: 800px;
+				height: 500px;
+				background: white;
+			}
+
+			canvas.shake {
+				animation: shake 0.5s linear 1;
+			}
+
+			@keyframes shake {
+
+				10%,
+				90% {
+					transform: translate3d(-1px, 0, 0);
+				}
+
+				20%,
+				80% {
+					transform: translate3d(2px, 0, 0);
+				}
+
+				30%,
+				50%,
+				70% {
+					transform: translate3d(-4px, 0, 0);
+				}
+
+				40%,
+				60% {
+					transform: translate3d(4px, 0, 0);
+				}
+			}
+		</style>
+	</body>
+
+</html>
